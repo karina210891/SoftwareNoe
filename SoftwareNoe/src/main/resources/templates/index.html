@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>SOFTWARE NOE</title>
+  <!-- Bootstrap core CSS -->
+  <link th:href="@{/css/all.min.css}" rel="stylesheet" type="text/css">
+  <link th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link th:href="@{/css/estilo-principal.css}" rel="stylesheet" type="text/css">
+  <link th:href= "@{/img/icono.png}" rel="icon" type="image/x-icon">
+</head>
+
+<body>
+	<div id="content-wrapper" class="d-flex flex-column">
+
+			<!-- Main Content -->
+			<div id="content">
+
+				<!-- barra superior -->
+				<nav
+					class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow barra"
+					th:fragment="barraSuperior">
+
+
+					<div class="topbar-divider d-none d-sm-block"></div>
+
+					<li class="navbar dropdown"><a
+						class="navbar dropdown-toggle letra3 text-white" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-expanded="false">VENTA </a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item letra3 text-dark " th:href="@{/boleta/}">REGISTRAR VENTA</a> <a
+								class="dropdown-item letra3 text-dark" th:href="@{/boleta/listar/}">LISTAR BOLETAS</a>
+							</div>
+					</li> 
+					
+					
+					
+					<li class="navbar dropdown"><a
+						class="navbar dropdown-toggle letra3 text-white" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-expanded="false">COMPRA </a>
+						<div class="dropdown-menu " aria-labelledby="navbarDropdown">
+							<a class="dropdown-item letra3 text-dark" th:href="@{/factura/}">REGISTRAR COMPRA</a> 
+							<a class="dropdown-item letra3 text-dark" th:href="@{/factura/listar/}">LISTAR COMPRAS</a>
+							<a class="dropdown-item letra3 text-dark" th:href="@{/listaPedido/}">LISTA DE PEDIDO</a>
+							</div>
+					</li> 
+					
+					<li class="navbar dropdown"><a
+						class="navbar dropdown-toggle letra3 text-white" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-expanded="false">REPORTES </a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item letra3 text-dark" th:href="@{/reportes/venta/}" >REPORTE VENTAS </a> 
+							<a class="dropdown-item letra3 text-dark" th:href="@{/reportes/compra/}" >REPORTE COMPRAS </a>
+							</div>
+					</li>
+
+
+					<!-- Topbar Navbar -->
+					<ul class="navbar-nav ml-auto">
+						<div class="topbar-divider d-none d-sm-block"></div>
+						<!-- Nav Item - Usarios -->
+						<li class="nav-item dropdown no-arrow"><a
+							class="nav-link dropdown-toggle" href="#" id="userDropdown"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"> <span sec:authentication="name"
+								class="mr-2 d-none d-lg-inline text-white-400  "></span> <span
+								sec:authentication="principal.authorities  "
+								class="mr-2 d-none d-lg-inline text-white-400  "></span> <i
+								class="fas fa-user"></i>
+						</a> <!-- Dropdown - Informacion de usuario -->
+							<div
+								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+								aria-labelledby="userDropdown">
+								<a class="dropdown-item"> <i
+									class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Ajustes
+								</a>
+								<div class="dropdown-divider"></div>
+
+								<form th:action="@{/logout}" method="post">
+									<button type="submit" class="dropdown-item">
+										<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+										Cerrar Sesión
+									</button>
+								</form>
+							</div></li>
+
+					</ul>
+
+				</nav>
+				<!-- Mensaje -->
+				<div th:fragment="mensajes">
+					<div class="alert alert-success alert-dismissable"
+						th:if="${success!=null}">
+						<label th:text="${success}"></label>
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+					</div>
+					<div class="alert alert-warning alert-dismissable"
+						th:if="${editar!=null}">
+						<label th:text="${editar}"></label>
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+					</div>
+
+					<div class="alert alert-danger alert-dismissable"
+						th:if="${eliminar!=null}">
+						<label th:text="${eliminar}"></label>
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+					</div>
+				</div>
+				<!-- Begin Page Content -->
+				<div class="container-fluid"></div>
+				<!-- /.container-fluid -->
+
+			</div>
+			</div>
+
+
+	<div>
+
+		<!-- Sidebar -->
+		<ul class="nav flex-column bg-info "
+			id="accordionSidebar" th:fragment="menu">
+
+			<!-- Sidebar - Brand -->
+			<a
+				class="sidebar-brand d-flex align-items-center justify-content-center text-left ml-4"
+				th:href="@{/principal/}">
+				<div class="sidebar-brand-icon rotate-n-15 mt-4 pl-4">
+					<i class="fas fa-shopping-bag"></i>
+				</div>
+				<div class="sidebar-brand-text mx-3 mt-4 letra">CALZADOS
+					NOELIA</div>
+			</a>
+			<br>
+			<!-- Division -->
+			<hr class="sidebar-divider my-0 bg-white ">
+
+			<!-- Nav Item - Pages Collapse Menu -->
+
+			<li class="nav-item letra2"><a class="nav-link active" aria-current="page"
+				th:href="@{/personal/}"> <i class="fas fa-user-tie"></i> <span>PERSONAL</span></a></li>
+
+			<li class="nav-item letra2"><a class="nav-link active" aria-current="page"
+				th:href="@{/proveedor/}"> <i class="fas fa-dolly"></i> <span>PROVEEDOR</span></a></li>
+
+			<li class="nav-item letra2"><a class="nav-link active" aria-current="page"
+				th:href="@{/cliente/}"> <i class="fas fa-user-alt"></i> <span>CLIENTE</span></a></li>
+
+			<li class="nav-item letra2"><a class="nav-link active" aria-current="page"
+				th:href="@{/categoria/}"> <i class="fas fa-align-left"></i> <span>CATEGORIA</span></a></li>
+
+			<li class="nav-item letra2"><a class="nav-link active" aria-current="page"
+				th:href="@{/producto/}"> <i class="fas fa-shoe-prints"></i> <span>PRODUCTO</span></a></li>
+
+
+			<!-- Division -->
+			<hr class="sidebar-divider my-0 bg-white ">
+
+		</ul>
+
+
+		<!-- Content Wrapper -->
+		
+	
+	<footer>
+     
+        <p class="my-auto text-center">Copyright &copy; La Nono 2023</p>
+     
+      <!-- /.container -->
+    </footer>
+	
+
+    <!-- Bootstrap core JavaScript -->
+  	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+	<script th:src="@{/js/scripts.js}"></script>
+</body>
+</html>
